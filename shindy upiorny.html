@@ -1,0 +1,499 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>#Catch us</title>
+<link rel="stylesheet" href="scanlines.css">
+<style>
+@font-face {
+    font-family: "MyFont";
+    src: url("font/LifeSavers-Regular.ttf") format("woff2");
+}
+
+:root{
+    --bg: #000;
+    --text: #cfcfcf;
+    --accent: #a7a7a7;
+    --font-ui: "MyFont", sans-serif;
+    --font-mono: "Courier New", monospace;
+    --img-hue: 0deg;
+    --img-glow: rgba(255,255,255,.35);
+}
+
+html, body {
+    height:100%;
+    margin:0;
+    overflow-x:hidden; 
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    font-family: var(--font-ui);
+}
+
+.hidden{display:none !important;}
+a{color:inherit}
+
+
+.screen{
+    width:min(1000px,92vw);
+    margin:auto;
+    padding:28px;
+}
+
+.desk{
+    width:100vw;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: radial-gradient(ellipse at center, #1a1a1a 0%, #000 70%);
+}
+.win98{
+    width:min(420px,92vw);
+    background:#c0c0c0;
+    color:#111;
+    box-shadow:0 0 0 1px #fff inset,0 0 0 2px #dfdfdf inset,0 0 0 3px #808080 inset,0 0 0 4px #000 inset;
+    padding:18px;
+    display:flex;
+    flex-direction:column;
+}
+.win98-title{
+    font-family: var(--font-ui);
+    text-align:center;
+    font-size:22px;
+    margin:4px 0 16px;
+    color:#1a1a1a;
+}
+.win98 label{display:block; font-size:14px; margin-bottom:4px; color:#3a3a3a}
+.win98 .input{
+    width:100%;
+    padding:6px 8px;
+    background:#fff;
+    border:2px solid #7b7b7b;
+    box-shadow: inset 1px 1px 0 #dfdfdf, inset -1px -1px 0 #808080;
+    font-family: var(--font-ui);
+    font-size:14px;
+    box-sizing:border-box;
+}
+.win98 .btn{
+    margin-top:14px;
+    width:100%;
+    padding:8px 0;
+    background:#c0c0c0;
+    border:2px solid #7b7b7b;
+    box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #808080;
+    font-family: var(--font-ui);
+    font-size:16px;
+    color:#111;
+    cursor:pointer;
+}
+.win98 .btn:active{
+    box-shadow: inset 1px 1px 0 #808080, inset -1px -1px 0 #fff;
+}
+
+
+#main {
+    display:flex;
+    flex-direction:column;
+    padding:20px;
+    box-sizing:border-box;
+    gap:28px;
+}
+
+.main{
+    display:flex;
+    flex-direction:column;
+    gap:28px;
+}
+
+.intro{
+    max-width:780px;
+    line-height:1.6;
+    font-size:18px;
+    text-align:left;
+}
+
+.gallery{
+    max-width:1000px;
+    display:grid;
+    gap:14px;
+    grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+}
+.tile{
+    aspect-ratio:16/9;
+    display:grid; place-items:center;
+    border:1px dashed #3a3a3a;
+    background:#0d0d0d;
+    color:#8e8e8e;
+    font-family: var(--font-mono);
+}
+.tile small{opacity:.85}
+
+.hero{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+    align-items:center;
+}
+.girl{
+    width:min(340px,70vw);
+    filter: hue-rotate(var(--img-hue)) drop-shadow(0 0 14px var(--img-glow));
+    transition: filter .25s ease;
+      transition: filter 0.3s;
+      z-index: 9999;
+	  filter: hue-rotate(0deg) drop-shadow(0 0 8px #ffffff);
+}
+.names{
+    list-style:none;
+    padding:0;
+    margin:0;
+    font-size:32px;
+    letter-spacing:.02em;
+    text-align:center;
+}
+.names li{margin:.18em 0;}
+
+.ascii{
+    max-width:100%;
+    overflow:auto;
+    border:1px solid #222;
+    padding:14px 16px;
+    background:#0a0a0a;
+    box-shadow: 0 0 12px #000 inset;
+}
+.ascii pre{
+    margin:0;
+    font-family: var(--font-mono);
+    font-size:14px;
+    line-height:1.15;
+    color:#ddd;
+    white-space:pre;
+    text-align:left;
+}
+
+
+.paste {
+    display:inline-block;       
+    background: #0d0d0d;        
+    color: #ccc;                 
+    font-family: "Courier New", monospace;
+    font-size: 14px;
+    line-height: 1.4;
+    white-space: pre;            
+    word-break: normal;          
+    padding: 16px;
+    margin: 0;
+}
+
+	        .glitch {
+            font-size:32px;
+            color: #ffffff;
+            position: relative;
+            animation: glitch 3s infinite, flicker 3s infinite;
+        }
+
+        .flicker-text1 {
+            color: #c3c3c3;
+            animation: flicker1 2s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 100% {
+                transform: translate(0);
+            }
+            10% {
+                transform: translate(-0.5px, 0.5px);
+            }
+            20% {
+                transform: translate(-0.5px, -0.5px);
+            }
+            30% {
+                transform: translate(0.5px, 0.5px);
+            }
+            40% {
+                transform: translate(0.5px, -0.5px);
+            }
+            50% {
+                transform: translate(-0.5px, 0.5px);
+            }
+            60% {
+                transform: translate(-0.5px, -0.5px);
+            }
+            70% {
+                transform: translate(0.5px, 0.5px);
+            }
+            80% {
+                transform: translate(0.5px, -0.5px);
+            }
+            90% {
+                transform: translate(-0.5px, 0.5px);
+            }
+        }
+
+        @keyframes flicker {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% {
+                opacity: 1;
+            }
+            20%, 24%, 55% {
+                opacity: 0;
+            }
+        }
+  </style>
+
+</head>
+<body>
+  <script>
+var titles = [
+  "C",
+  "Ca",
+  "Cat",
+  "Catc",
+  "Catch",
+  "Catch ",
+  "Catch U",
+  "Catch Us",
+  "Catch Us",
+  "Catch U",
+  "Catch ",
+  "Catch",
+  "Catc",
+  "Cat",
+  "Ca",
+  "C"
+];
+
+  var currentTitleIndex = 0;
+  function changeTitle() {
+      document.title = titles[currentTitleIndex];
+      currentTitleIndex = (currentTitleIndex + 1) % titles.length;
+  }
+  setInterval(changeTitle, 400);
+</script>
+
+<section id="click" class="desk screen">
+  <div class="win98">
+    <div class="win98-title">Catch Us Login</div>
+    <label for="username">User name:</label>
+    <input id="username" class="input" value="Shindy & Upiorny downfall">
+    <button class="btn" id="loginBtn">Login</button>
+  </div>
+</section>
+
+<main id="main" class="screen hidden">
+  <div class="main">
+    <div class="intro">
+    </div>
+
+    <div class="hero">
+      <img class="girl" src="catchus3.png" alt="Hero">
+      <ul class="glitch names">
+        <li>Sprytny</li>
+      </ul>
+
+      <div class="ascii"><pre>Welcome to the grave of Shindy & Upiorny.</pre></div>
+
+      <pre class="paste">
+
+        ╔════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+        ║@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@5:~^B@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@Y.     ║  
+        ║@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@~  .B@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@?    ║   
+        ║@@@@@@@@@@@@@@@@@@@@@@#PB#@&B&BGJ    5&&&&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@B   ║   
+        ║@@@@@@@@@@@@@@@@@@@@@@@@@@G5?!^:     ....::^::~#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&. ║   
+        ║@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@J   :&@@@@@&&@&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@G@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&.║   
+        ║@@@@@@@@@@@@@@@@@@@@@Y@@@@@@@@@@~   :@@@@@@@@G@@@@BB5:?@@@@@@@@@@@@@@@@@@@@@@@@@@@7&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@B║   
+        ║@@@@@@@@@@@@@@@@@@@@B 5@@@&@@@@@7   J@@@@@@@#.@@@G^    5@@@@@@@@@@@@@@@@@@@@@@@@@~#@@@@@@@&@B@@@@BPB@@@@@@@@@@@@@@@@@@@@@@@@║  
+        ║@@@@@@@@@@@@@@@@@@@B   &@&.#@@@@~   #@@:!@@@Y 5&Y^!     Y#@@@@@@@@@@@@@@@@@@@@@&:G@@@@@@@Y#JB&&BJPY#@@@B5@@@@@@@@@@@@@@@@@@@║  
+        ║@@@@@@@@@@@@@@@@@@@P   @@5 ?@&&@.   ~@&  B@&: .:        JB@@@@@@@@@@@@@@@@@@@@#.Y@@@@@@@JB!Y7^^J5?#@@&7?@&&@@@@G&@@@@@@@@@@@║  
+        ║@@@@@@@@@@@@@@@@@@@P   ^?7 .5J!^     ^:  !7             :@@@@@@@@@@@@@@@@@@#@5 ?&B@@@@@P5^:7J5&B7#&G~~P@###@@@P~@@@@@@@@@@@@║ 
+        ║@@@@@@@@@@@@@@@@@@@@5  :~                               &@@@@@@@@@@@@@@@@@PBY ^@Y@@G@@&:. :J5&#5&BYJY&@B&B#@@G.?@@@@&@@@@@@@@@║ 
+        ║@@@@@@@@@@@@@@@@@@@5.                                  ~@@@@@@@@@@@@B#@@@J7J .&@&@B&@@?        ~!7#@@@&@B#@&5::5@@5^PG@@@@@@║ 
+        ║@@@@@@@@@@@&@@@@@@@5         .. !Y                     :@@@@@@@@#GG~~&@@?.!  G?G@@G@@&&.        .&@@@@@&#@&J: !7!J.^?~@@@@@@║ 
+        ║@@@@@@@@@@#.5&@@@@!          5&YG!                      5&&@@#YYJ#7?@@#:    ~B^@@#&@&#@P..    .B@@@@@@@@@@@#~P&:.. ^!B@@@@@@║ 
+        ║@@@@@@@@@&. G&@@@&.          ?!?7~PY                      ~?G5:Y@@&GB&.     &!P@P@@@&@@@&BPG55@@@@@@@@@@@@@@#@G!  :^J@&@@@@5║ 
+        ║@@@@@@@@@^ .@@@@@&     .   ~?PG&P&@J                      ..JG&@#@#:5:     5B^GB~@@J@@@@@@@@@@@@@@@@@@@@@P77PY~...:7@YG@@@&.║ 
+        ║@@@@@@@@J  :@@@@&:    ?^:  5PB@@&@@B:            .         7#BP#@Y..      :@:J#75@7 G@@@@@@@@@@@@@@@@@@&~      !   !~7?@B!~ ║ 
+        ║@@@@@@@&   !@@@@!    .7:.  G?##5?PP5B!      :             ~G~^.:^ .  .    55.#&:@#  .&@@@@@@@@@@@@@@@@@J            ?!GG.^. ║ 
+        ║@@@@@&#.    5@@@&    !5:   ?B&@@YB##~    ~! : :!     .    .J@&^  :.      ?Y::@G~@~   .G@@@@@@@@@@@@@@@@BP. .7~     5~^5  ~  ║ 
+        ║@@@@#       G@@@&   .:!.   ~G@@@&&@@^    ?~ !.~: ..  J     JY.  :       ~77 Y@!G#  !.  !&@@@@@@@@@@@@@@@@@&5~    .Y: :   .  ║ 
+        ║J!:~:       ^?#@Y   ~^ .~  #@@@@@@@@Y:   B7Y@~&.~&5^:?         ^.       J:. &@^@: ~&5    ?&@@@@@@@@@@@@@@P:     .~ .7       ║ 
+        ║                    ::J&B ~&&&BP?Y7^.    !:7P.B:^G5JJJ                 ~^. 7@P5G 7&5&G     !GBB######B5~       ..  5.       ║ 
+        ║   ..      ?G:.     ^JYJ^!57.               !??^ ~^?:.                 7.  G#?&. &@@@@#:                          Y~        ║ 
+        ║JPGB5     .#@?      .Y!            ..    .^7~.^^~!?:                  .^^ ^@BJB  ~&@@@@@#B~                     ^7B         ║ 
+        ║J^.:!      ?Y.  .!BJ^~          ...   .~J7~~7PP~                      ^.. 5@5B!   J@@@@@@@J                   .?!#.         ║ 
+        ║ ~B@@.        .^!Y~.          ..   .!YY!?G&@#~.  .                    ^   @B^J.. :@@@@@@#B~   .               ?55P          ║ 
+        ║@@@P~       ..J?           .:.   ^P#PYG@@@5:   ^Y^                       !@?     7@@@@@@@@J   J              ~YY#:          ║ 
+        ║B~         !Y:         .  ..   !&&B#@&GB!     YG!.                       P@.    ~@@@@@@@@P    .             .PB##           ║ 
+        ║       75:                   ?&@@@@B7^.     ^B?..                     ^  #&     .??G@@@@&.                 .?&J@Y           ║   
+        ║    .5&G.                .~5@@@&PJ~^~   ~??GP.                        !  @7         .^:.                   .BB5@:           ║   
+        ║  :G&Y.             .^?5PG&@@&7 .^?^ :P@#PG~                         .: :&                                 5@!&#            ║   
+        ║:G&J           .:!J55?^.^G@&! .:~J:^B@@PBY                           ^  YP                                JPB:@~ :          ║   
+        ║&5.  ..:~7JY5YJ!^.    7#@&7 .^.!BY#@@J7B~             .  ..:.       .^  #:                               !5B~?&  7          ║   
+        ║?^~!!77!~^:.       ^G@@&!  ^: 5@#5B?.JB.   .^        5@@@@@~           :B                               .#~&.&? .?          ║   
+        ║                ^Y&@@@7  ~^:.BB:..  5Y    ~~.       G@@@@@@.           ?~                               #7#&~&  :?          ║   
+        ║             ^5GY5@@5  ~~.^.G5    :J:    ?.      .7&@@@@@@@:           J                               5BY@#BJ :&!    :   . ║   
+        ║          .75Y7^7&#: ^~  ! J?    7~     Y. .:75B&@@@@@@@@@B           .!                              .&5@@P&. :@:    .: .  ║   
+        ║       .!Y7:^^7#@#::^.  7 :J   :7.   :!###&@@@@@@@@@@@@@@?            7.                              JG&@&5#  .@:     ! .  ║   
+        ║   ^YG&@@GYG5&@@@GBJ:..J^.B!~!P&PG#&@@@@@@@@@@@@@@@@@@@5.            ^!                              .&#&@Y#P   &.     ?^   ║   
+        ║ 7@@@P^^&@@@@@#&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&?.             .J                               5#@##:@?   #.     ~5   ║   
+        ║YG!.   ~@@&P~.  ^@@@@@@@@@@@@@@@@@@@@@@@@&&&#BG5?~:.                P.                       :~     .#G&B~~@!   G.      &.  ║   
+        ║.   !GG5?~.     ^@@@@@@@&J...    .!.::.                            J^                     ^J#@&     GGB#J ?@:   J.      BP  ║   
+        ║   5&BJ7?JYJ?7?B@@@&&#&#Y^       :                                ^Y                     P@@@@#    J@7&B^ Y@.   !.      7@. ║   
+        ║            ~B@@&&@@@@@@@@@&GY!:^?  .                             J                    .&@@@@@#   .#B^@B .?&    ~:      ^@Y ║   
+        ║          !&@@@@@@@@@@@@@@@@@@@@@@J:                             ^                     B@@@@@@#   !@G^@Y ^!@    :^       G& ║   
+        ║        .#@@@@@@@@@@@@@@@@@@@@@@@&#P:  ^                         .                    ~@@@@@@@5   G#P^@:~.~@    .^        &!║   
+        ║        .@&&&&&&@@@Y~?77P#BY!^.   .~?J~.                                              5@@@@@@@!   &7^~&:~ !@     ~        J#║   
+        ║         :.   .P&#@@7~GPP#@&#P?~.  .. ...                                             P@@@@@@@.  ^P  !#~  ~&     ~        .&║  
+        ║                 ^YJ~ ^@@@#GGBB#&&P7:.                                                J@@@@@@#   Y~  7&:  :P~    ^.        #║  
+        ║                    ~?Y5J.    .:^!                ~~                                  ^@@@@@@?   J   J@   .75.   .:        ?║  
+        ║                    5@@@@&P: .              ...^?Y^ .. ~?J!                           .@@@@@@.       G&  ...P^    ^        :║  
+        ║                     G@PYYPJ       .....::::^7J~. ^?JY&G5~                    .~       &@@@@#        @B  :  #!    ^         ║  
+        ║                ^^~!?JB##BPYJ??YJ?7!~:..  .^:...!GB#&G^          ~5           :.       &@@@@5       :@#     B?:   ..     :. ║ 
+        ║                Y@@@@@@@@@@&  .&@@@@@@@@@@@&#GY7?J?~.     ..     .G!             ~P  Y~B@@@@7       ^:?     5P^.         ^  ║ 
+        ║                  .^G#@@@@@#   !@@@@@@@@@@&Y~:^.        J@@@&5J!                 .^  ~BP@@@@^       .       ~B ?            ║  
+        ║                      !@@@@~    Y@@@@@@@#5?:         !P#@@@@@@@@#J.                Y. 75@@@@PJ?~^.          .# 7?           ║   
+        ║                       :B@@.     7@@@@@!          .5@@@@@@@@@@@@@@@&~:GB5?:      ~#!   !@@@@&~!?@@J          G. #?          ║   
+        ║                         .:       ~@@@^          ?@@@@@@@@@@@@@@@@@@@&@@@@@G.   ^Y.    .@@@@@^  ^P~          :  :&!         ║   
+        ╚════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+                        //////////////////////////////////////////////////////////////////////////////////////////
+                        //                                                                                      //
+                        //     .d8888b.        d8888 88888888888 .d8888b.  888    888 888     888  .d8888b.     //
+                        //    d88P  Y88b      d88888     888    d88P  Y88b 888    888 888     888 d88P  Y88b    //
+                        //    888    888     d88P888     888    888    888 888    888 888     888 Y88b.         //
+                        //    888           d88P 888     888    888        8888888888 888     888  "Y888b.      //
+                        //    888          d88P  888     888    888        888    888 888     888     "Y88b.    //
+                        //    888    888  d88P   888     888    888    888 888    888 888     888       "888    //
+                        //    Y88b  d88P d8888888888     888    Y88b  d88P 888    888 Y88b. .d88P Y88b  d88P    //
+                        //     "Y8888P" d88P     888     888     "Y8888P"  888    888  "Y88888P"   "Y8888P"     //
+                        //                                                                                      //
+                        //                      Welcome to the grave of "Shindy & Upiorny"                      //
+                        //                                                                                      //
+                        //    Time for de-anonymization - the truth comes out                                   //
+                        //    Upiorny and Shindy long considered themselves hackers, using                      //
+                        //    internet anonymity to spread fear. They intimidated girls,                        //
+                        //    shared others' personal data without consent and regularly crossed                //
+                        //    the boundaries of proper behavior online. For a long time they felt untouchable - //
+                        //    but that just ended.                                                              //
+                        //    Their own overconfidence led to their downfall - it took just one                 //
+                        //    wrong move on the internet to leave traces behind. Everyone leaves                //
+                        //    traces - even those who think they are "invisible".                               //
+                        //    It's time for the community to learn who these people really were, who            //
+                        //    hid behind pseudonyms for a long time and used their                              //
+                        //    "anonymity" to harm others.                                                       //
+                        //    Justice on the internet may work slowly, but it always works.                     //
+                        //                                                                                      //
+                        //////////////////////////////////////////////////////////////////////////////////////////
+                        ◤                                                                                       ◥
+                        ⊱──────────────────────────────────────── Shindy ────────────────────────────────────────⊰
+                        ┌ Shindy - Filip Piecuch
+                        ├ Telegram: @Shindy215
+                        ├ Facebook: https://www.facebook.com/profile.php?id=100069165980672
+                        ├ Instagram: Sh1ndy00
+                        ├ Tiktok: Reaperint
+                        ├ Discord: 9gsm
+                        ├ Discord: Shindy
+                        ├ E-Mail: fpiecuch07@gmail.com
+                        ├ Girlfriend: https://www.facebook.com/profile.php?id=100072897559182
+                        ├ Discord Number: +48 579 521 950
+                        ├ Discord Number: +355 674900507
+                        ├ Steam Number: +48 534 717 951
+                        ├ Telegram Number: +1 5056806746
+                        |       
+                        ┌ School
+                        ├ III Liceum Ogólnokształcące w Krośnie
+                        ├ ul. Bohaterów Westerplatte 20
+                        ├ 38-400 Krosno
+                        ├  Tel.: (13) 43 216 94
+                        ├  Strona internetowa: https://norwidkrosno.pl/
+                        |
+                        ┌ Family
+                        ├ Father: https://www.facebook.com/krzysztof.piecuch.58
+                        ├ Mather: https://www.facebook.com/profile.php?id=100008668478109
+                        ├ E-Mail: Krzysztofpiecuch@gmail.com
+                        ├ E-Mail: piecucha24@gmail.com
+                        ├ Amelia Piecuch | Krzysztof Piecuch
+                        ├ Sister: https://www.facebook.com/sandra.piecuch.7?locale=pl_PL
+                        ⊱───────────────────────────────────────── End ─────────────────────────────────────────⊰
+                        ◣                                                                                      ◢
+                                                                EXTRA INFO
+                                            
+                                                        . Podkarpackie Voivodeship
+                                                        . Town: Polańczyk
+                                                        . Zip code: 38-610
+                                                        . Lesko County
+                                                        . RLS license plates
+
+                                                        . Name - Kornelia
+                                                        . Surname - Kleban
+                                                        . Age - 18
+                                                        . Photos - https://imgur.com/a/cuCZUra
+                        ◤                                                                                      ◥
+                        ⊱─────────────────────────────────────── Upiorny ───────────────────────────────────────⊰
+                        ┌ Upiorny - Michał Skowroński
+                        ├ Telegram: @stoplarpingkid
+                        ├ Telegram: @lostmyledgerinpoland
+                        ├ Facebook: https://www.facebook.com/profile.php?id=61576739368275
+                        ├ Roblox: 8895481075
+                        ├ Roblox: 25049325
+                        ├ Instagram: someonstolemyledger
+                        ├ Tiktok: someonestolemyledger
+                        ├ Discord: larpedlifestyle
+                        ├ Discord: chorobapsychiczna
+                        ├ Epic Games: leantap
+                        ├ STEAM: 76561198781047627 
+                        ├ E-Mail: edwin.zieme@edmondventures.com
+                        ├ E-Mail: stayanonymous@gtfcy37qyzor7kb6blz2buwuu5u7qjkycasjdf3yaslibkbyhsxub4yd.onion
+                        ├ E-Mail: sinisterfuck@mail2tor.com
+                        ├ E-Mail: michal.skowronski89@email.com
+                        ├ E-Mail: michal.skowronski2010@gmail.com
+                        ├ Discord Number: +48 503182947
+                        ├ Discord Number: +48 796420158
+                        ├ Steam Number: +48 887301659
+                        ├ Facebook Number: +48 665934210
+                        ├ Telegram Number: +1 4722599965
+                        ├ Telegram Number: +1 5056146111
+                        └ Roblox Number: +355 689037303
+                        |
+                        ┌ Family
+                        ├ Father: https://www.facebook.com/tomek.skowronski.777/photos
+                        ├ Mather: https://www.facebook.com/marta.pilarska.39
+                        ├ GrandMother: https://www.facebook.com/profile.php?id=100090756271167
+                        └ GrandFather: https://www.facebook.com/miroslaw.skowronski.39/photos
+                        ⊱───────────────────────────────────────── End ─────────────────────────────────────────⊰
+                        ◣                                                                                      ◢
+
+
+
+      </pre>
+
+    </div>
+  </div>
+</main>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const clickScreen = document.querySelector('#click');
+const mainScreen  = document.querySelector('#main');
+const loginBtn = document.querySelector('#loginBtn');
+
+loginBtn.addEventListener('click', () => {
+    clickScreen.classList.add('hidden');
+    mainScreen.classList.remove('hidden');
+    playRandomSong();
+});
+
+const songs = ["tramatic1.mp3","tramatic1.mp3","/paste music/tra"];
+let audio;
+function playRandomSong(){
+    const pick = songs[Math.floor(Math.random()*songs.length)];
+    audio = new Audio(pick);
+    audio.loop = true;
+    audio.play();
+}
+
+clickScreen.addEventListener('wheel', e => e.preventDefault(), {passive:false});
+clickScreen.addEventListener('touchmove', e => e.preventDefault(), {passive:false});
+</script>
+</body>
+</html>

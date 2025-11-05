@@ -1,0 +1,94 @@
+(function(){
+const ID = "antyjew-overlay";
+const STYLE_ID = "antyjew-style";
+const MSG = "No stealing jew >.<";
+const Z = 2147483647;
+
+function insertStyles(){
+    if(document.getElementById(STYLE_ID)) return;
+    const s = document.createElement("style");
+    s.id= STYLE_ID;
+    s.textContent=`
+    #${ID} { 
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0,0,0,0.8);
+        z-index: ${Z};
+        pointer-events: auto;
+    }
+    #${ID} .antyjew-message {
+        color: white;
+        font-family: Inter, Roboto, sans-serif;
+        font-size: 12px;
+        opacity: 0.88;
+        letter-spacing: 0.02px;
+        padding: 8px 12px;
+        border-radius: 6px;
+        backdrop-filter: blur(2px);
+        user-select: none;
+    }
+`;
+(document.head || document.documentElement).appendChild(s);
+}
+
+function createOverlay(){
+    if(document.getElementById(ID)) return;
+    const o = document.createElement("div");
+    o.id = ID;
+    const t = document.createElement("div");
+    t.className = "antyjew-message";
+    t.textContent = MSG;
+    o.appendChild(t);
+
+
+    const attach = () => { 
+        if(!document.body) {
+            return false;
+        }
+        document.body.appendChild(o);
+        document.documentElement.style.overflow = "hidden";
+        document.body.style.overflow = "hidden";
+        return true;
+    };
+
+
+    if(!attach()){
+        document.addEventListener("DOMContentLoaded", function(){
+            attach();
+        }, { once: true, capture: true });
+    }
+}
+
+function overlayExists(){ return document.getElementById(ID) }
+
+
+function keyMatches(e){
+    if(e.key === "F12") return true;
+    const k = (e.key || "").toLowerCase();
+    if(e.ctrlkey && e.shiftKey && (k === "i" || k === "j")) return true;
+    if(e.ctrlKey && k === "u") return true;
+    if(e.metaKey && e.altKey && k === "i") return true;
+    return false;
+}
+
+function onKeyDown(e){
+    if(keyMatches(e)){
+        try { e.preventDefault(); e.stopImmediatePropagation(); } catch(_) {}
+        if(!overlayExists()) createOverlay();
+    }
+}
+
+function onContextMenu(e){
+    try { e.preventDefault(); e.stopImmediatePropagation(); } catch(_) {}
+    if(!overlayExists()) createOverlay();
+}
+
+insertStyles();
+window.addEventListener("keydown", onKeyDown, true);
+window.addEventListener("contextmenu", onContextMenu, true);    
+window.antyjewOverlayShow = createOverlay;
+
+})();

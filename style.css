@@ -1,0 +1,118 @@
+@font-face {
+    font-family: 'Customfont';
+    src: url(font/NugoSansLight.html);
+}
+    body {
+      margin: 0;
+      padding: 0;
+      background: #000000;
+      color: #000;
+      font-family: "CustomFont", Tahoma, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+}
+
+.img {
+    pointer-events: none;
+    position: absolute;
+    bottom: 56vh;
+    left: 50vw;
+    transform: translateX(-50%);
+    width: auto;
+    height: 44vh;
+    filter: grayscale(100%);
+    transform-origin: top center;
+    animation: swing 4s ease-in-out infinite;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+@keyframes swing {
+    0%   { transform: translateX(-50%) rotate(-5deg); }
+    50%  { transform: translateX(-50%) rotate(5deg); }
+    100% { transform: translateX(-50%) rotate(-5deg); }
+}
+
+
+    .menu {
+      margin-top: 300px;
+      margin-bottom: 50px;
+	  font-family: "CustomFont", Tahoma, sans-serif;
+	  font-weight: 300px;
+    }
+
+    .menu a {
+      display: block;
+      text-decoration: none;
+      color: #ffffff;
+      margin: 10px 0;
+      font-size: 38px;
+	  font-weight: 300px;
+      transition: color 0.3s;
+	  font-family: "CustomFont", Tahoma, sans-serif;
+    }
+
+    .menu a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+	        .glitch {
+            font-size:32px;
+            color: #ffffff;
+			font-weight: 300px;
+            position: center;
+            animation: glitch 6s infinite, flicker 6s infinite;
+        }
+
+        .flicker-text1 {
+            color: #c3c3c3;
+            animation: flicker1 4s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 100% {
+                transform: translate(0);
+            }
+            10% {
+                transform: translate(-0.5px, 0.5px);
+            }
+            20% {
+                transform: translate(-0.5px, -0.5px);
+            }
+            30% {
+                transform: translate(0.5px, 0.5px);
+            }
+            40% {
+                transform: translate(0.5px, -0.5px);
+            }
+            50% {
+                transform: translate(-0.5px, 0.5px);
+            }
+            60% {
+                transform: translate(-0.5px, -0.5px);
+            }
+            70% {
+                transform: translate(0.5px, 0.5px);
+            }
+            80% {
+                transform: translate(0.5px, -0.5px);
+            }
+            90% {
+                transform: translate(-0.5px, 0.5px);
+            }
+        }
+
+        @keyframes flicker {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% {
+                opacity: 1;
+            }
+            20%, 24%, 55% {
+                opacity: 0;
+            }
+        }
+				

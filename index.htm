@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Catch us</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="scanlines.css">
+
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src="antyjew.js"></script>
+
+<meta property="og:title" content="Catch us">
+<meta property="og:description" content="All good people die.">
+<meta property="og:image" content="https://catchus.live/catchus3.png">
+<meta property="og:url" content="https://catchus.live">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#8000ff">
+
+<link rel="icon" href="https://catchus.live/catchus3.png" type="image/png">
+</head>
+
+<body>
+<img src="imgs/pngegg.png" class="img">
+
+<audio id="bg-music" loop="">
+     <source src="audio/roster/audio/Catchus%20Music.mp3">
+</audio>
+  <script>
+var titles = [
+  "C",
+  "Ca",
+  "Cat",
+  "Catc",
+  "Catch",
+  "Catch ",
+  "Catch U",
+  "Catch Us",
+  "Catch Us",
+  "Catch U",
+  "Catch ",
+  "Catch",
+  "Catc",
+  "Cat",
+  "Ca",
+  "C"
+];
+  var currentTitleIndex = 0;
+  function changeTitle() {
+      document.title = titles[currentTitleIndex];
+      currentTitleIndex = (currentTitleIndex + 1) % titles.length;
+  }
+  setInterval(changeTitle,400);
+</script>
+    
+<center></center><div class="menu glitch">
+      <a href="Members.html">All good people die.</a>
+    </div>
+            <script>
+const audio = document.getElementById('bg-music');
+function startMusic() {
+    audio.play().catch(err => console.log("Playback blocked:", err));
+    document.removeEventListener('click', startMusic);
+    document.removeEventListener('keydown', startMusic);
+}
+document.addEventListener('click', startMusic);
+document.addEventListener('keydown', startMusic);
+</script>
+
+</html>

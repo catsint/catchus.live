@@ -1,0 +1,297 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="antyjew.js"></script>
+  <link rel="stylesheet" href="scanlines.css">
+  <title>{ Catch Us }</title>
+  <audio id="bg-music" loop="">
+     <source src="audio/roster/audio/Catchus%20Music.mp3">
+</audio>
+  <style>
+    @import url('css2');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #000;
+      color: #ccc;
+      font-family: 'VT323', monospace;
+      font-size: 1.5rem;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .navbar {
+      position: absolute;
+      top: 20px;
+      display: flex;
+      gap: 5px; 
+    }
+
+    .navbar button {
+      background-color: rgba(0, 0, 0, 0.75);
+      color: #ccc;
+      border: 1px solid #444;
+      padding: 8px 45px;
+      font-size: 1.2rem;
+      font-family: 'VT323', monospace;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: center;
+      border-radius: 5px;
+      flex: 1;
+    }
+
+    .navbar button:hover {
+      color: #FEC8D8;
+      text-shadow: 0 0 5px #FEC8D8;
+      background-color: #333;
+    }
+
+    .navbar button.active {
+      background-color: #333;
+    }
+
+    .page {
+      display: none;
+      width: 100%;
+      text-align: center;
+    }
+
+    .active {
+      display: block;
+    }
+
+    .roster-box {
+      background-color: rgba(0, 0, 0, 0.85);
+      border: 1px solid #444;
+      padding: 40px;
+      width: 400px; 
+      box-shadow: 0 0 20px #222;
+      animation: flicker 1.5s infinite alternate;
+      margin: 10px;
+      text-align: center; 
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); 
+    }
+
+    .roster-section h2 {
+      font-size: 2rem;
+      color: #eee;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .roster-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .roster-section li {
+      margin: 5px 0;
+    }
+
+    .roster-section a {
+      color: #aaa;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .roster-section a:hover {
+      color: #FEC8D8;
+      text-shadow: 0 0 5px #FEC8D8;
+    }
+
+    .goal-page {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 80vh;
+    }
+
+    .goal-page p {
+      font-size: 2rem; 
+      color: #aaa;
+      max-width: 800px;
+      text-align: center;
+    }
+
+    .goal-page textarea {
+      display: none;
+    }
+
+    .our-work-box {
+      background-color: rgba(0, 0, 0, 0.85);
+      border: 1px solid #444;
+      padding: 10px;
+      width: 400px;
+      box-shadow: 0 0 20px #222;
+      animation: flicker 1.5s infinite alternate;
+      margin: 10px;
+      text-align: center;
+      display: inline-block;
+    }
+
+    .our-work-box .description {
+      font-size: 1.4rem;
+      color: #aaa;
+      margin: 15px 0;
+    }
+
+    .our-work-box .click-me {
+      color: #FEC8D8;
+      text-decoration: none;
+      font-weight: bold;
+      transition: text-shadow 0.3s;
+    }
+
+    .our-work-box .click-me:hover {
+      text-shadow: 0 0 5px #FEC8D8;
+    }
+
+    @keyframes flicker {
+      0% { opacity: 0.95; }
+      100% { opacity: 1; }
+    }
+
+	        .glitch {
+            font-size: 2rem;
+            color: #FEC8D8;
+            position: relative;
+            animation: glitch 7s infinite, flicker 7s infinite;
+        }
+
+        .flicker-text1 {
+            color: #c3c3c3;
+            animation: flicker1 6s infinite;
+        }
+
+
+        @keyframes flicker {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% {
+                opacity: 1;
+            }
+            20%, 24%, 55% {
+                opacity: 0;
+            }
+        }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <button id="roster-tab" onclick="showPage('roster')">Roster</button>
+    <button id="goal-tab" onclick="showPage('goal')">Description</button>
+    <button id="ourwork-tab" onclick="showPage('ourwork')">Our Work</button>
+  </div>
+
+  <div id="roster" class="page active">
+    <div class="roster-box">
+      <div class="roster-section glitch">
+        <h2>Founders</h2>
+        <ul>
+          <li><a href="https://doxbin.com/user/stalker" target="_blank">stalker</a></li>
+        </ul>
+      </div>
+      <div class="roster-section glitch">
+        <h2>Admins</h2>
+        <ul>
+          <li><a href="https://doxbin.com/user/dokzx" target="_blank">exploit</a></li>
+        </ul>
+      </div>
+      <div class="roster-section glitch">
+        <h2>Members</h2>
+        <ul>
+		
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="goal" class="page">
+    <div class="goal-page">
+      <h2>Catch Us</h2>
+      <p id="goal-text ">Catchus is a group founded by a few friends and we made it our goal and purpose to be a anti-extortion group aka AE the group is open join you just have to provide proof of doing anti-extortion and to contact us on discord trackedbyfbi or exploit our groups discriminator is "cus" it is in all members discord names if a member is not doing so they will be removed from the sites roster.</p>
+    </div>
+  </div>
+
+  <div id="ourwork" class="page">
+    <h2>Our  Work</h2>
+    <div class="glitch our-work-box ">
+      <h2>shind upiorn</h2>
+      <p class="description">Shindy & Upiorny are pseudo hackers that got doxxed by one person.</p>
+      <a href="shindy%20upiorny.html" class="click-me" target="_blank">Dox</a>
+    </div>
+    <div class="glitch our-work-box ">
+      <h2>Enact</h2>
+      <p class="description">Absolute dumbass extorter named enact with a room temp iq.</p>
+      <a href="enact.html" class="click-me" target="_blank">Dox</a>
+    </div>
+    <div class="glitch our-work-box ">
+      <h2>Soon...</h2>
+      <p class="description">Soon...</p>
+      <a href="index.htm" class="click-me" target="_blank">Soon..</a>
+    </div>
+  </div>
+  <script>
+var titles = [
+  "C",
+  "Ca",
+  "Cat",
+  "Catc",
+  "Catch",
+  "Catch ",
+  "Catch U",
+  "Catch Us",
+  "Catch Us",
+  "Catch U",
+  "Catch ",
+  "Catch",
+  "Catc",
+  "Cat",
+  "Ca",
+  "C"
+];
+  var currentTitleIndex = 0;
+  function changeTitle() {
+      document.title = titles[currentTitleIndex];
+      currentTitleIndex = (currentTitleIndex + 1) % titles.length;
+  }
+  setInterval(changeTitle,400);
+</script>
+            <script>
+const audio = document.getElementById('bg-music');
+function startMusic() {
+    audio.play().catch(err => console.log("zablokowano playback >.<", err));
+    document.removeEventListener('click', startMusic);
+    document.removeEventListener('keydown', startMusic);
+}
+document.addEventListener('click', startMusic);
+document.addEventListener('keydown', startMusic);
+</script>
+  <script>
+    function showPage(page) {
+      const pages = document.querySelectorAll('.page');
+      pages.forEach(p => p.classList.remove('active'));
+
+      const tabs = document.querySelectorAll('.navbar button');
+      tabs.forEach(tab => tab.classList.remove('active'));
+
+      document.getElementById(page).classList.add('active');
+      document.getElementById(page + '-tab').classList.add('active');
+    }
+  </script>
+</body>
+</html>
