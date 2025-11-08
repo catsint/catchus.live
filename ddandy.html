@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>#Catch us</title>
+<link rel="stylesheet" href="scanlines.css">
+<style>
+@font-face {
+    font-family: "MyFont";
+    src: url("font/LifeSavers-Regular.ttf") format("woff2");
+}
+
+:root{
+    --bg: #000;
+    --text: #cfcfcf;
+    --accent: #a7a7a7;
+    --font-ui: "MyFont", sans-serif;
+    --font-mono: "Courier New", monospace;
+    --img-hue: 0deg;
+    --img-glow: rgba(255,255,255,.35);
+}
+
+html, body {
+    height:100%;
+    margin:0;
+    overflow-x:hidden; 
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    font-family: var(--font-ui);
+}
+
+.hidden{display:none !important;}
+a{color:inherit}
+
+
+.screen{
+    width:min(1000px,92vw);
+    margin:auto;
+    padding:28px;
+}
+
+.desk{
+    width:100vw;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: radial-gradient(ellipse at center, #1a1a1a 0%, #000 70%);
+}
+.win98{
+    width:min(420px,92vw);
+    background:#c0c0c0;
+    color:#111;
+    box-shadow:0 0 0 1px #fff inset,0 0 0 2px #dfdfdf inset,0 0 0 3px #808080 inset,0 0 0 4px #000 inset;
+    padding:18px;
+    display:flex;
+    flex-direction:column;
+}
+.win98-title{
+    font-family: var(--font-ui);
+    text-align:center;
+    font-size:22px;
+    margin:4px 0 16px;
+    color:#1a1a1a;
+}
+.win98 label{display:block; font-size:14px; margin-bottom:4px; color:#3a3a3a}
+.win98 .input{
+    width:100%;
+    padding:6px 8px;
+    background:#fff;
+    border:2px solid #7b7b7b;
+    box-shadow: inset 1px 1px 0 #dfdfdf, inset -1px -1px 0 #808080;
+    font-family: var(--font-ui);
+    font-size:14px;
+    box-sizing:border-box;
+}
+.win98 .btn{
+    margin-top:14px;
+    width:100%;
+    padding:8px 0;
+    background:#c0c0c0;
+    border:2px solid #7b7b7b;
+    box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #808080;
+    font-family: var(--font-ui);
+    font-size:16px;
+    color:#111;
+    cursor:pointer;
+}
+.win98 .btn:active{
+    box-shadow: inset 1px 1px 0 #808080, inset -1px -1px 0 #fff;
+}
+
+
+#main {
+    display:flex;
+    flex-direction:column;
+    padding:20px;
+    box-sizing:border-box;
+    gap:28px;
+}
+
+.main{
+    display:flex;
+    flex-direction:column;
+    gap:28px;
+}
+
+.intro{
+    max-width:780px;
+    line-height:1.6;
+    font-size:18px;
+    text-align:left;
+}
+
+.gallery{
+    max-width:1000px;
+    display:grid;
+    gap:14px;
+    grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+}
+.tile{
+    aspect-ratio:16/9;
+    display:grid; place-items:center;
+    border:1px dashed #3a3a3a;
+    background:#0d0d0d;
+    color:#8e8e8e;
+    font-family: var(--font-mono);
+}
+.tile small{opacity:.85}
+
+.hero{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+    align-items:center;
+}
+.girl{
+    width:min(340px,70vw);
+    filter: hue-rotate(var(--img-hue)) drop-shadow(0 0 14px var(--img-glow));
+    transition: filter .25s ease;
+      transition: filter 0.3s;
+      z-index: 9999;
+	  filter: hue-rotate(0deg) drop-shadow(0 0 8px #ffffff);
+}
+.names{
+    list-style:none;
+    padding:0;
+    margin:0;
+    font-size:32px;
+    letter-spacing:.02em;
+    text-align:center;
+}
+.names li{margin:.18em 0;}
+
+.ascii{
+    max-width:100%;
+    overflow:auto;
+    border:1px solid #222;
+    padding:14px 16px;
+    background:#0a0a0a;
+    box-shadow: 0 0 12px #000 inset;
+}
+.ascii pre{
+    margin:0;
+    font-family: var(--font-mono);
+    font-size:14px;
+    line-height:1.15;
+    color:#ddd;
+    white-space:pre;
+    text-align:left;
+}
+
+
+.paste {
+    display:inline-block;       
+    background: #0d0d0d;        
+    color: #ccc;                 
+    font-family: "Courier New", monospace;
+    font-size: 14px;
+    line-height: 1.4;
+    white-space: pre;            
+    word-break: normal;          
+    padding: 16px;
+    margin: 0;
+}
+
+	        .glitch {
+            font-size:32px;
+            color: #ffffff;
+            position: relative;
+            animation: glitch 3s infinite, flicker 3s infinite;
+        }
+
+        .flicker-text1 {
+            color: #c3c3c3;
+            animation: flicker1 2s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 100% {
+                transform: translate(0);
+            }
+            10% {
+                transform: translate(-0.5px, 0.5px);
+            }
+            20% {
+                transform: translate(-0.5px, -0.5px);
+            }
+            30% {
+                transform: translate(0.5px, 0.5px);
+            }
+            40% {
+                transform: translate(0.5px, -0.5px);
+            }
+            50% {
+                transform: translate(-0.5px, 0.5px);
+            }
+            60% {
+                transform: translate(-0.5px, -0.5px);
+            }
+            70% {
+                transform: translate(0.5px, 0.5px);
+            }
+            80% {
+                transform: translate(0.5px, -0.5px);
+            }
+            90% {
+                transform: translate(-0.5px, 0.5px);
+            }
+        }
+
+        @keyframes flicker {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% {
+                opacity: 1;
+            }
+            20%, 24%, 55% {
+                opacity: 0;
+            }
+        }
+  </style>
+
+</head>
+<body>
+  <script>
+var titles = [
+  "C",
+  "Ca",
+  "Cat",
+  "Catc",
+  "Catch",
+  "Catch ",
+  "Catch U",
+  "Catch Us",
+  "Catch Us",
+  "Catch U",
+  "Catch ",
+  "Catch",
+  "Catc",
+  "Cat",
+  "Ca",
+  "C"
+];
+
+  var currentTitleIndex = 0;
+  function changeTitle() {
+      document.title = titles[currentTitleIndex];
+      currentTitleIndex = (currentTitleIndex + 1) % titles.length;
+  }
+  setInterval(changeTitle, 400);
+</script>
+
+<section id="click" class="desk screen">
+  <div class="win98">
+    <div class="win98-title">Catch Us Login</div>
+    <label for="username">User name:</label>
+    <input id="username" class="input" value="Ddandy downfall">
+    <button class="btn" id="loginBtn">Login</button>
+  </div>
+</section>
+
+<main id="main" class="screen hidden">
+  <div class="main">
+    <div class="intro">
+    </div>
+
+    <div class="hero">
+      <img class="girl" src="catchus3.png" alt="Hero">
+      <ul class="glitch names">
+        <li>Joszza</li>
+      </ul>
+
+      <div class="ascii"><pre>Welcome to the grave of ddandy.</pre></div>
+
+      <pre class="paste">
+Wojtek „ddandy” Fikier
+- oszust (sprzedaje nie swoje sygnały + kiedyś chciał robić scam token krypto)
+- manipulant 
+- cykor
+- ego top
+- mitoman
+- zleceniodawca (zlecał zastraszania)
+
+Mieszka: Monachium
+Pracował: jako piekarz jebany kręcił chleb po nocach 
+Złota: Osobnik mieszkał tam tylko 2 tyg, bo jego przyjaciel oszukał go na pieniądze tak jak on Andrzeja pjw
+Zdrada: kiedyś debilowi wymsknęło się na kanale głosowym (publicznym), że pisze z jakaś Roksana (słyszało to ok. 5-6 osób i chciał ja zruchać w cycki, bo ma takie duże, nie wiem, jak teraz, bo mam bana na discordzie od miesiąca, ale prawdopodobnie dalej jest ta osoba na discordzie wiec mogłaby to potwierdzić.
+Rolex: Rolex, który posiada nie jest legitny, jest kupiony ze stronki za 400$ tak jak dawno temu sprzedawał fejury (2020)
+Sygnały brane od: (Ben, gold trader (VIP)), (Gold Trader MO). Wojtek nie analizuje, nie tworzy sam sygnałów idiota manipuluje nowych pod tekstem "no każdy ma taka samą analizę.."
+
+200,000 euro konto niestety, ale jest to konto demo, a nie realne c; (Pieniążkami, którymi się chwali to zarobki z grupki vip)
+
+Firma: https://aleo.com/pl/firma/wojciech-fikier (założył ja nie dawno, bo wiedział, ze jak ktoś się rozpierdoli do pewnej organizacji o to, że opierdala sygnały i nie odprowadza podatku to by się nie spłacił)
+ig: https://www.instagram.com/ddand.y / fb: https://www.facebook.com/wojciech.fikier
+snap: imxdandy
+numer: 731 036 784 (dalej aktualny)
+
+Dwa psy chyba największe 1234202783977177168 (śmieć bez zasad, nagrywał rozmowy), 1189228098445660304 (kundelek, obronca moralności)
+Admini na dc (chyba tez jego psy, ale do nich nic nie mam pewnie zostali zmanipulowani jak niektórzy co mają rangę vip) 408939574958620683, 430005218822979586
+
+
+Drogi Wojtku,
+mimo to, że mnie zbanowałeś to i tak dalej będą się ciągnąc za tobą brudy, kłamstwa, manipulacje, oszustwa pieniężne.. 
+Na twoim miejscu usunąłbym discorda i przeprosił c;
+
+Na telegramie (nie jest mój, nie znam ich) https://t.me/dandytoscam jest wyjaśnione i jest podany filmik co i jak.
+
+
+
+
+
+
+
+
+
+⣿⠲⠤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⣸⡏⠀⠀⠀⠉⠳⢄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⣿⠀⠀⠀⠀⠀⠀⠀⠉⠲⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⢰⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠲⣄⠀⠀⠀⡰⠋⢙⣿⣦⡀⠀⠀⠀⠀⠀
+⠸⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣙⣦⣮⣤⡀⣸⣿⣿⣿⣆⠀⠀⠀⠀
+⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣿⣿⣿⣿⠀⣿⢟⣫⠟⠋⠀⠀⠀⠀
+⠀⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⣿⣷⣷⣿⡁⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⢸⣿⣿⣧⣿⣿⣆⠙⢆⡀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢾⣿⣤⣿⣿⣿⡟⠹⣿⣿⣿⣿⣷⡀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣧⣴⣿⣿⣿⣿⠏⢧⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠀⠈⢳⡀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡏⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⢳
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠸⣿⣿⣿⣿⣿⣿⣿⣿⠏⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡇⢠⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠃⢸⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣼⢸⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⢸⣿⣿⣿⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⣿⣾⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠛⠻⠿⣿⣿⣿⡿⠿⠿⠿⠿⠿⢿⣿⣿⠏    
+      </pre>
+
+    </div>
+  </div>
+</main>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const clickScreen = document.querySelector('#click');
+const mainScreen  = document.querySelector('#main');
+const loginBtn = document.querySelector('#loginBtn');
+
+loginBtn.addEventListener('click', () => {
+    clickScreen.classList.add('hidden');
+    mainScreen.classList.remove('hidden');
+    playRandomSong();
+});
+
+const songs = ["tramatic1.mp3","tramatic1.mp3","/paste music/tra"];
+let audio;
+function playRandomSong(){
+    const pick = songs[Math.floor(Math.random()*songs.length)];
+    audio = new Audio(pick);
+    audio.loop = true;
+    audio.play();
+}
+
+clickScreen.addEventListener('wheel', e => e.preventDefault(), {passive:false});
+clickScreen.addEventListener('touchmove', e => e.preventDefault(), {passive:false});
+</script>
+</body>
+</html>
